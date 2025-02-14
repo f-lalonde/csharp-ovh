@@ -361,6 +361,10 @@ namespace Ovh.Api
             {
                 return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             }
+            if (response.StatusCode == HttpStatusCode.NoContent)
+            {
+                return "Success ; Response Status: No Content:204";
+            }
 
             throw await ExtractExceptionFromHttpResponse(response).ConfigureAwait(false);
         }
